@@ -16,7 +16,10 @@ I had to limit the size of messages to able to read in terminal .
 
 2.	  using python 
 This is desirable for our counting as well and the one I worked finally.  following is the explanation of each of these scripts.  
+
+
 Producer.py 
+
 During this step I used pandas read json function to read the file and load into producer.  I created a sub data frame where I selected only the user id and time stamp .  
 Transformation  of unix times 
 After this I transformed  the unix time stamp into  date time and added the columns  of year , month , day , hours , minutes , seconds columns to the data frame . This could be used for any grouping on dataframes .  
