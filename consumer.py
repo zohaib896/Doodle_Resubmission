@@ -6,7 +6,7 @@ import sqlite3
 import producer_towrite_newtopic as p
 
 # Initialize consumer variable and set property for JSON decode
-consumer = KafkaConsumer ('my_topic3',bootstrap_servers = ['localhost:9092'],
+consumer = KafkaConsumer ('my_topic90',bootstrap_servers = ['localhost:9092'],
 value_deserializer=lambda m: json.loads(m.decode('utf-8')))
 conn  =  sqlite3.connect('mydb.db')
 cur= conn.cursor()
