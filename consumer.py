@@ -3,10 +3,10 @@ from kafka import KafkaConsumer
 import sys
 import json
 import sqlite3
-import producer as p
+import producer_towrite_newtopic as p
 
 # Initialize consumer variable and set property for JSON decode
-consumer = KafkaConsumer ('my_topic2',bootstrap_servers = ['localhost:9092'],
+consumer = KafkaConsumer ('my_topic3',bootstrap_servers = ['localhost:9092'],
 value_deserializer=lambda m: json.loads(m.decode('utf-8')))
 conn  =  sqlite3.connect('mydb.db')
 cur= conn.cursor()
@@ -30,6 +30,6 @@ for message in consumer:
         except :
             raise Exception (' error failed executing insert query')
     #writing to new topic
-    p.producer.send('my_new_topic', Consumed_user_recs)
+    p.producer2.send('my_new_topic', Consumed_user_recs)
     conn.commit()
 

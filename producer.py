@@ -35,7 +35,7 @@ for row in t.data_generator():
     df['minute'] = df['ts'].dt.minute
     df['second'] = df['ts'].dt.second
     df=df.dropna()
-    #print (df.to_string(index = False))
+    print (df.to_string(index = False))
 
     #x = df.groupby('year')['uid'].nunique()
     #print(x)
@@ -43,5 +43,5 @@ for row in t.data_generator():
         users.add(user)
         dic[min] = list(users)
         print(dic)
-        producer.send('my_topic2', dic)
+        producer.send('my_topic3', dic)
 print("Message Sent to my_topic2")
