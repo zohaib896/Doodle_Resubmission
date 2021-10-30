@@ -23,7 +23,7 @@ After this I transformed  the unix time stamp into  date time and added the colu
 Now That I have split columns of date , I can select minutes and user id from it and select proper data structure to send it to the producer .  
 
 Selection of data structure 
-Firstly I thought to use dictionary of sets .  Well  this wasnot an option because sets are not serialize able . So I did a work around while still using sets :D  
+Firstly I thought to use dictionary of sets .  Well  this wasnot an option because sets are not serialize able . So I did a work around while still using sets .  
 I used default dictionary of lists because this can easily be send in producer.send() function. The values have to be json and serializable for this .  
 However since  the user ids per minute can be duplicates , i used set()  data structure  to  make it unique and then transform it back to list and send  dictionary of list to producer.send() function. Then it will contain the unique users for every minute and is serializeable . 
 For serialization there are other options like use of wrapper functions or libraries .   
