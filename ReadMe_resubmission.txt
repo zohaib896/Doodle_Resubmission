@@ -1,5 +1,5 @@
  Getting Started 
-‘It was great opportunity to learn more about Kafka and finally come up with the solution that might work as a good solution.’
+‘It was great opportunity to learn more about Kafka and finally come up with the solution that might be upto  expectation.’
 Files location and conventions 
 All files are placed in the repositiory. The files may have same names as before like (consumer , producer etc) but the code is enhanced and refactored  .
 I started with setting up unbuntu on AWS  EC2 t2.micro  server  and installed  all  the dependencies .
@@ -58,7 +58,7 @@ What could have been done better :
 The code quality can definitely be improved . I could use sql alchemy drivers or flask  for data abstraction  ,  a more object oriented code  with funcitons classes constructors and encapsulation could be an option.  There are plenty of other things that can be improved like yearly and monthly calculations in similar or different ways etc . 
 
 Conclusion and Remarks
-I had a feeling of accomplishment and learning in the end, plus I was curious to learn about it too. It will keep getting better once i start to work on it more deeply.  With that said I Hope for best to both of us, please do share your feedback regarding what I could improve further. Transparency is important because that’s how I will learn things. And thank you very much for everything.   
+I had a feeling of accomplishment and learning in the end, plus I was curious to learn about it too. It will keep getting better once i start to work on it more deeply.  With that said I Hope for best to both of us, please do share your feedback regarding what I could improve further. And thank you very much for everything.   
 Further References
 
 [1] https://medium.com/streamthoughts/streaming-data-into-kafka-s01-e03-loading-json-file-8c4c93b89ea1
