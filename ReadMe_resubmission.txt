@@ -14,15 +14,15 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092   --topic topicN
 
 I had to limit the size of messages to able to read in terminal . 
 
-2.	  using python 
+2.	  using python: 
 This is desirable for our counting as well and the one I worked finally.  following is the explanation of each of these scripts.  
-Producer.py 
+Producer.py: 
 During this step I used pandas read json function to read the file and load into producer.  I created a sub data frame where I selected only the user id and time stamp .  
 Transformation  of unix times 
 After this I transformed  the unix time stamp into  date time and added the columns  of year , month , day , hours , minutes , seconds columns to the data frame . This could be used for any grouping on dataframes .  
 Now That I have split columns of date , I can select minutes and user id from it and select proper data structure to send it to the producer .  
 
-Selection of data structure 
+Selection of data structure :
 Firstly I thought to use dictionary of sets .  Well  this wasnot an option because sets are not serialize able . So I did a work around while still using sets .  
 I used default dictionary of lists because this can easily be send in producer.send() function. The values have to be json and serializable for this .  
 However since  the user ids per minute can be duplicates , i used set()  data structure  to  make it unique and then transform it back to list and send  dictionary of list to producer.send() function. Then it will contain the unique users for every minute and is serializeable . 
@@ -30,7 +30,7 @@ For serialization there are other options like use of wrapper functions or libra
 
 
 
-Consumer.py   
+Consumer.py:   
 Consumer parses the dictionary of unique elements . The received dictionary will have minutes as key and list of corresponding unique user ids as values .  
 Taking the length of each list would give the total number of users per minute .  I have printed this to the stdout  but I think it would be better to store this information for other stats in   database .  
 So I have created Sqlite database and stored the data using ‘insert and replace’ statement  so it will overwrite the user count (minutes is a primary key ) to avoid any  duplicates .  
@@ -40,7 +40,7 @@ DisplayStats.py :
 So once the data is in  database then  I can display this information  using pandas data frames using aggregates (mean , max) or group by. 
 This is an added feature as I have already displayed the counts in stdout .  
 
-Resolving Memory problems  (partitioning vs   generators ,vs   pandas or Distributed framework ?  )    : 
+Resolving Memory problems  (partitioning vs   generators ,vs   pandas or Distributed framework ?  )   : 
 Initially I created small file of same data that you provided and it worked fine .  However the with large files , I was  facing the problem both  in unbutu and  pandas .  
 In Unbuntu its time outs and server hanging .  In pandas its memory error.  
 To accomplish this goal I tried several things :   
@@ -48,11 +48,11 @@ I try to load the data into pandas. For this there is an option to set the chunk
 
 
 Using Generators 
-Finally I used generator to parse the file and resolve the memory error . The generator script is already present in the base directory .  	
-Writing to new topic 
+Finally I used generator to parse the file and resolve the memory error . The generator python script is already present in the base directory .  	
+Writing to new topic :
 This wasn’t complicated as what I did is call second producer function with new topic from consumer  and send the data in stream  to  new topic .  
 What could have been done better :  
-The code quality can definitely be improved . I could use sql alchemy drivers or flask  for data abstraction  ,  a more object oriented code  with funcitons classes constructors and encapsulation could be an option.  There are plenty of other things that can be improved like yearly and monthly calculations in similar or different ways etc . 
+The code quality can definitely be improved . I could use sql alchemy drivers or flask  for data abstraction  ,  a more object oriented code  with functions classes constructors and encapsulation could be an option.  There are plenty of other things that can be improved like yearly and monthly calculations in similar or different ways etc . 
 
 Conclusion and Remarks
 I had a feeling of accomplishment and learning in the end, plus I was curious to learn about it too. It will keep getting better once i start to work on it more deeply.  With that said I Hope for best to both of us, please do share your feedback regarding what I could improve further. And thank you very much for everything.   
