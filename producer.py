@@ -17,7 +17,7 @@ conn.commit()
 # Initialize producer variable and set parameter for JSON encode
 producer = KafkaProducer(bootstrap_servers=
                          ['localhost:9092'], value_serializer=lambda v: json.dumps(v).encode('utf-8'))
-lst =[]
+
 dic =collections.defaultdict(list)
 users= set()
 df=pd.DataFrame()
