@@ -44,4 +44,4 @@ for row in t.data_generator():
         dic[min] = list(users)
         print(dic)
         producer.send('my_topic90', dic)
-print("Message Sent to my_topic2")
+print("Message Sent to my_topic90")
